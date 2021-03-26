@@ -1,9 +1,9 @@
 FROM node:14.16
 
-WORKDIR /usr/coding/backend-app
-COPY src/package*.json ./
+WORKDIR /usr/src/app
+COPY package*.json ./
 RUN npm install
 COPY . .
 
 EXPOSE 8081
-CMD [ "node", "src/server.js" ]
+CMD [ "node", "server.js" ]
