@@ -1,0 +1,10 @@
+version: "3.9"
+
+services: 
+  database:
+    build: ./database
+    environment: 
+      MYSQL_ROOT_PASSWORD: password
+    restart: always
+    ports: 
+      - 3306:3306
