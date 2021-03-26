@@ -1,6 +1,7 @@
 # Task 5
 
 ## Without docker-compose
+Remember to setup connection between container - docker compose is doing that itself so it is much easier to use it.
 
 ### MySQL Database
 ```
