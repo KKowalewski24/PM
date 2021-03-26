@@ -1,7 +1,7 @@
 FROM node:14.16
 
-WORKDIR /usr/coding/frontend-app
-COPY source/package*.json ./
+WORKDIR /usr/src/app
+COPY package*.json ./
 RUN npm install
 COPY . .
 
