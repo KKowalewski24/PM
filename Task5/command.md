@@ -22,7 +22,8 @@ docker run -it -p 8081:8081 sample_backend
 
 ### Frontend
 ```
-
+docker build -t sample_frontend .
+docker run -it -p 8080:8080 sample_frontend
 ```
 
 ## With docker-compose
