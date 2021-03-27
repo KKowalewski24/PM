@@ -70,7 +70,21 @@ select * from products;
 ```
 
 ### Backend
-Everything is done by docker-compose
+Install env support
+Change knexfile.js - Variables are taken from docker-compose environment
+```
+module.exports = {
+    client: 'mysql',
+    connection: {
+        host: process.env.DATABASE_HOST,
+        port: process.env.DATABASE_PORT,
+        database: process.env.DATABASE_NAME,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+    }
+}
+```
+and rest is done by docker-compose
 
 
 ### Frontend
