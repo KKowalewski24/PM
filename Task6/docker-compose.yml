@@ -68,6 +68,9 @@ services:
   user_db:
     build: ./db/users
     restart: always
+    environment:
+      MYSQL_DATABASE: users
+      MYSQL_ROOT_PASSWORD: password
     ports:
       - '3310:3306'
     volumes:
@@ -76,6 +79,9 @@ services:
   product_db:
     build: ./db/products
     restart: always
+    environment:
+      MYSQL_DATABASE: products
+      MYSQL_ROOT_PASSWORD: password
     ports:
       - '3311:3306'
     volumes:
@@ -84,6 +90,9 @@ services:
   order_db:
     build: ./db/orders
     restart: always
+    environment:
+      MYSQL_DATABASE: orders
+      MYSQL_ROOT_PASSWORD: password
     ports:
       - '3312:3306'
     volumes:
