@@ -19,12 +19,12 @@ services:
       - user_db
       - email_service
     environment:
-      - EMAIL_SERVICE_HOST=email_service,
-      - USERS_DB_HOST=user_db,
-      - MYSQL_DATABASE='users'
-      - MYSQL_USER='user'
-      - MYSQL_PASSWORD='password'
-      - MYSQL_ROOT_PASSWORD='password'
+      EMAIL_SERVICE_HOST: email_service,
+      DATABASE_HOST: user_db
+      DATABASE_PORT: 3306
+      DATABASE_NAME: users
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
     volumes:
       - ./users:/usr/src/app
 
@@ -37,11 +37,11 @@ services:
     links:
       - product_db
     environment:
-      - PRODUCTS_DB_HOST=product_db,
-      - MYSQL_DATABASE='products'
-      - MYSQL_USER='user'
-      - MYSQL_PASSWORD='password'
-      - MYSQL_ROOT_PASSWORD='password'
+      DATABASE_HOST: product_db
+      DATABASE_PORT: 3306
+      DATABASE_NAME: products
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
     volumes:
       - ./products:/usr/src/app
 
@@ -56,12 +56,12 @@ services:
       - order_db
       - product_service
     environment:
-      - PROCUCT_SERVICE_HOST=product_service,
-      - ORDERS_DB_HOST=order_db,
-      - MYSQL_DATABASE='orders'
-      - MYSQL_USER='user'
-      - MYSQL_PASSWORD='password'
-      - MYSQL_ROOT_PASSWORD='password'
+      PRODUCT_SERVICE_HOST: product_service,
+      DATABASE_HOST: order_db
+      DATABASE_PORT: 3306
+      DATABASE_NAME: orders
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
     volumes:
       - ./orders:/usr/src/app
 
