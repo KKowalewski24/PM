@@ -1,3 +1,3 @@
 exports.home = (req, res) => {
-    res.json({'status':'working very well!'});
+  res.json({ "status": "working very well!" });
 }
