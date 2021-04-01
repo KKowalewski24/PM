@@ -1,31 +1,31 @@
 version: "3.9"
 
-services: 
+services:
   database:
     build: ./database
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: products
     restart: always
-    ports: 
+    ports:
       - 3306:3306
-  
+
   backend:
     build: ./backend
-    environment: 
+    environment:
       DATABASE_HOST: database
       DATABASE_PORT: 3306
       DATABASE_NAME: products
       DATABASE_USER: root
       DATABASE_PASSWORD: password
-    depends_on: 
+    depends_on:
       - database
-    ports: 
+    ports:
       - 8081:8081
 
   frontend:
     build: ./frontend
-    depends_on: 
+    depends_on:
       - backend
-    ports: 
+    ports:
       - 8080:8080

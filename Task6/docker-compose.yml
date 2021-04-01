@@ -1,0 +1,104 @@
+version: '3.4'
+
+services:
+  email_service:
+    build: ./emails
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./emails:/usr/src/app
+
+  user_service:
+    build: ./users
+    ports:
+      - "8082:8082"
+    depends_on:
+      - user_db
+      - email_service
+    links:
+      - user_db
+      - email_service
+    environment:
+      EMAIL_SERVICE_HOST: email_service,
+      DATABASE_HOST: user_db
+      DATABASE_PORT: 3306
+      DATABASE_NAME: users
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    volumes:
+      - ./users:/usr/src/app
+
+  product_service:
+    build: ./products
+    ports:
+      - "8081:8081"
+    depends_on:
+      - product_db
+    links:
+      - product_db
+    environment:
+      DATABASE_HOST: product_db
+      DATABASE_PORT: 3306
+      DATABASE_NAME: products
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    volumes:
+      - ./products:/usr/src/app
+
+  order_service:
+    build: ./orders
+    ports:
+      - "8084:8084"
+    depends_on:
+      - order_db
+      - product_service
+    links:
+      - order_db
+      - product_service
+    environment:
+      PRODUCT_SERVICE_HOST: product_service,
+      DATABASE_HOST: order_db
+      DATABASE_PORT: 3306
+      DATABASE_NAME: orders
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    volumes:
+      - ./orders:/usr/src/app
+
+  user_db:
+    build: ./db/users
+    restart: always
+    environment:
+      MYSQL_DATABASE: users
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3310:3306'
+    volumes:
+      - users-db:/var/lib/mysql
+
+  product_db:
+    build: ./db/products
+    restart: always
+    environment:
+      MYSQL_DATABASE: products
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3311:3306'
+    volumes:
+      - products-db:/var/lib/mysql
+
+  order_db:
+    build: ./db/orders
+    restart: always
+    environment:
+      MYSQL_DATABASE: orders
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3312:3306'
+    volumes:
+      - orders-db:/var/lib/mysql
+
+volumes:
+  users-db:
+  products-db:
+  orders-db:
