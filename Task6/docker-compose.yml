@@ -1,6 +1,15 @@
 version: '3.4'
 
 services:
+  nginx:
+    image: nginx:1.19.9-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - product_service
+    ports:
+      - "4000:4000"
+
   email_service:
     build: ./emails
     ports:
@@ -31,7 +40,7 @@ services:
   product_service:
     build: ./products
     ports:
-      - "8081:8081"
+      - "8081"
     depends_on:
       - product_db
     links:
