@@ -11,6 +11,7 @@
   "author": "Lukasz Chomatek",
   "license": "ISC",
   "dependencies": {
+    "amqplib": "^0.7.1",
     "body-parser": "^1.19.0",
     "bookshelf": "^1.0.1",
     "express": "^4.17.1",

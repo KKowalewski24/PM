@@ -1,10 +1,21 @@
 version: '3.4'
 
 services:
+  rabbit_mq:
+    image: rabbitmq:3.8.14-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+
   email_service:
     build: ./emails
+    depends_on:
+      - rabbit_mq
     ports:
       - "8083:8083"
+    environment:
+      BROKER_HOST: rabbit_mq
+      BROKER_PORT: 5672
     volumes:
       - ./emails:/usr/src/app
 
@@ -15,6 +26,7 @@ services:
     depends_on:
       - user_db
       - email_service
+      - rabbit_mq
     links:
       - user_db
       - email_service
@@ -25,6 +37,8 @@ services:
       DATABASE_NAME: users
       DATABASE_USER: root
       DATABASE_PASSWORD: password
+      BROKER_HOST: rabbit_mq
+      BROKER_PORT: 5672
     volumes:
       - ./users:/usr/src/app
 

@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "f56bd992-e216-4dde-aecc-c78431cd258d",
+		"name": "Task6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Check user service",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082",
+					"host": [
+						"localhost"
+					],
+					"port": "8082"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"email\": \"abc@cde.pl\",\r\n        \"name\": \"Kamil\",\r\n        \"surname\": \"Kowalewski\",\r\n        \"birthdate\": \"2020-01-01T00:00:00.000Z\",\r\n        \"gender\": \"female XD\"\r\n    }\r\n"
+				},
+				"url": {
+					"raw": "localhost:8082/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
