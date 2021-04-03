@@ -16,3 +16,9 @@ docker image rm -f $(docker images | grep -v "1b5eb721624e" | grep -v "2fb283157
 ```
 docker-compose up --scale product_service=5
 ```
+
+[How to install and run JMeter](https://www.guru99.com/guide-to-install-jmeter.html)
+
+* Install JDK 1.8
+* Copy all dirs and files from zip archive
+* Go to bin and run jmeter.bat - this starts JMeter GUI
