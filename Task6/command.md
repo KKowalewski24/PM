@@ -1,6 +1,6 @@
 # Task 6
 
-Deleting all images except of chosen images
+Deleting all images except of chosen images - work in bash - on Windows use git bash
 ```
 docker image rm -f $(docker images | grep -v "1b5eb721624e" | grep -v "cd0f0b1e283d" | grep -v "f18da2f58c3d" | grep -v "72ab4137bd85")
 ```
