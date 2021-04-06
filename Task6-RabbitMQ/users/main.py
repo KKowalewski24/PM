@@ -15,19 +15,17 @@ def home() -> str:
 def create_user():
     request_data = request.get_json()
     message = request_data["email"]
-    print(message)
-    # message = "sample_email"
-    #
-    # connection = pika.BlockingConnection(
-    #     pika.ConnectionParameters(host=os.environ["BROKER_HOST"]))
-    # channel = connection.channel()
-    # channel.queue_declare(queue='task_queue', durable=True)
-    # channel.basic_publish(
-    #     exchange='',
-    #     routing_key='task_queue',
-    #     body=message,
-    #     properties=pika.BasicProperties(delivery_mode=2))
-    # connection.close()
+    
+    connection = pika.BlockingConnection(
+        pika.ConnectionParameters(host=os.environ["BROKER_HOST"]))
+    channel = connection.channel()
+    channel.queue_declare(queue='task_queue', durable=True)
+    channel.basic_publish(
+        exchange='',
+        routing_key='task_queue',
+        body=message,
+        properties=pika.BasicProperties(delivery_mode=2))
+    connection.close()
 
     return Response(status=201)
 
