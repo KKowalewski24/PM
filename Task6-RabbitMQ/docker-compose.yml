@@ -1,0 +1,18 @@
+version: 3.9
+
+services:
+  rabbit_mq:
+    image: rabbitmq:3.8.14-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  users:
+    build: ./users
+      ports:
+        - 5001:5001
+
+  emails:
+    build: ./emails
+    ports:
+      - 5000:5000
