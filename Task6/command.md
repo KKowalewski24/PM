@@ -61,5 +61,7 @@ Start-Service filebeat
 ```
 http://localhost:5601/app/infra#/logs/stream
 
+Somehow on my PC after running whole docker-compose it does not work - in order to show how it works leave only elk and email_service
+
 ## Microservices Replication - JMeter
 
