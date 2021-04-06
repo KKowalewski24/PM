@@ -7,12 +7,23 @@ services:
       - 5672:5672
       - 15672:15672
 
-  users:
-    build: ./users
-    ports:
-      - 5001:5001
-
   emails:
     build: ./emails
     ports:
       - 5000:5000
+    depends_on:
+      - rabbit_mq
+    environment:
+      BROKER_HOST: rabbit_mq
+      BROKER_PORT: 5672
+
+  users:
+    build: ./users
+    ports:
+      - 5001:5001
+    depends_on:
+      - rabbit_mq
+      - emails
+    environment:
+      BROKER_HOST: rabbit_mq
+      BROKER_PORT: 5672
