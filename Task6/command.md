@@ -21,6 +21,6 @@ On Linux run in your host machine
 * `vim /etc/sysctl.conf`
 * Add `vm.max_map_count=262144`
 * restart
-```
+
 ## Microservices Replication - JMeter
 
