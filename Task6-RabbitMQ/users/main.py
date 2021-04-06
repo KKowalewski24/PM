@@ -19,10 +19,10 @@ def create_user():
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host=os.environ["BROKER_HOST"]))
     channel = connection.channel()
-    channel.queue_declare(queue='task_queue', durable=True)
+    channel.queue_declare(queue='email_queue', durable=True)
     channel.basic_publish(
         exchange='',
-        routing_key='task_queue',
+        routing_key='email_queue',
         body=message,
         properties=pika.BasicProperties(delivery_mode=2))
     connection.close()
