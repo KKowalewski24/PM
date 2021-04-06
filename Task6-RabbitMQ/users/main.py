@@ -1,7 +1,7 @@
 import os
 
 import pika
-from flask import Flask, jsonify, request, Response
+from flask import Flask, Response, jsonify, request
 
 app = Flask(__name__)
 
@@ -15,7 +15,7 @@ def home() -> str:
 def create_user():
     request_data = request.get_json()
     message = request_data["email"]
-    
+
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host=os.environ["BROKER_HOST"]))
     channel = connection.channel()

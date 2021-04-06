@@ -1,6 +1,7 @@
 import os
-import pika
 import time
+
+import pika
 
 sleepTime = 20
 print(' [*] Sleeping for ', sleepTime, ' seconds.')
