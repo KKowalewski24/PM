@@ -9,8 +9,8 @@ services:
 
   users:
     build: ./users
-      ports:
-        - 5001:5001
+    ports:
+      - 5001:5001
 
   emails:
     build: ./emails
