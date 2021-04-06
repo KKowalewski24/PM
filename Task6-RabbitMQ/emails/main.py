@@ -1,9 +1,10 @@
 import os
-
 import pika
-from flask import Flask, jsonify
+import time
 
-app = Flask(__name__)
+sleepTime = 20
+print(' [*] Sleeping for ', sleepTime, ' seconds.')
+time.sleep(sleepTime)
 
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(host=os.environ["BROKER_HOST"]))
@@ -11,7 +12,7 @@ channel = connection.channel()
 channel.queue_declare(queue='task_queue', durable=True)
 
 
-def send_email(ch, method, properties, body) -> None:
+def callback(ch, method, properties, body):
     email = body.decode()
     print("Email has been sent!")
     print("Email address: " + str(email))
@@ -19,18 +20,5 @@ def send_email(ch, method, properties, body) -> None:
 
 
 channel.basic_qos(prefetch_count=1)
-channel.basic_consume(queue='task_queue', on_message_callback=send_email)
+channel.basic_consume(queue='task_queue', on_message_callback=callback)
 channel.start_consuming()
-
-
-@app.route("/", methods=["GET"])
-def home() -> str:
-    return jsonify(info="Emails working")
-
-
-def main() -> None:
-    app.run(port=5000, debug=True, host="0.0.0.0")
-
-
-if __name__ == "__main__":
-    main()

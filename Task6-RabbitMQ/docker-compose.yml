@@ -14,6 +14,7 @@ services:
     depends_on:
       - rabbit_mq
     environment:
+      PYTHONUNBUFFERED: 1
       BROKER_HOST: rabbit_mq
       BROKER_PORT: 5672
 
@@ -25,5 +26,6 @@ services:
       - rabbit_mq
       - emails
     environment:
+      PYTHONUNBUFFERED: 1
       BROKER_HOST: rabbit_mq
       BROKER_PORT: 5672
