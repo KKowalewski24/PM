@@ -1,6 +1,24 @@
 version: '3.4'
 
 services:
+  nginx:
+    image: nginx:1.19.9-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - product_service
+    ports:
+      - "4000:4000"
+
+  elk:
+    image: sebp/elk:7.11.2
+    ports:
+      - "5601:5601"
+      - "9200:9200"
+      - "5044:5044"
+    environment:
+      ES_CONNECT_RETRY: 150
+
   email_service:
     build: ./emails
     ports:
@@ -31,7 +49,7 @@ services:
   product_service:
     build: ./products
     ports:
-      - "8081:8081"
+      - "8081"
     depends_on:
       - product_db
     links:
