@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "7358bd7b-9d50-4cff-9881-c157366b8b7f",
+		"name": "Task6-RabbitMQ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"abc@cde.pl\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5001/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
